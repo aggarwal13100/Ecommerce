@@ -1,6 +1,7 @@
 const express = require("express");
 // instantiating the server
 const app = express();
+app.use(express.json());
 const database = require("./config/database");
 const errorMiddleware = require("./middlewares/error");
 
@@ -20,11 +21,14 @@ database.connectDatabase();
 
 // importing the ROUTES
 const product = require("./routes/productRoute");
+const order = require("./routes/orderRoute");
 
 // mounting the routes on /api/v1
 app.use("/api/v1", product);
+app.use("/api/v1", order);
 
 // Middleware for Errors
+// we have to use this middleware after mounting all the routes
 app.use(errorMiddleware);
 
 const server = app.listen(process.env.PORT, (request, respond) => {
