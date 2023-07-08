@@ -22,8 +22,9 @@ database.connectDatabase();
 // importing the ROUTES
 const product = require("./routes/productRoute");
 const order = require("./routes/orderRoute");
-
+const user = require("./routes/userRoute");
 // mounting the routes on /api/v1
+app.use("/api/v1",user);
 app.use("/api/v1", product);
 app.use("/api/v1", order);
 

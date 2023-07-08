@@ -1,12 +1,10 @@
 const express = require('express');
-const { createProduct,getAllProducts,updateProduct, getProductDetails, createProductReview, deleteReview, getProductReviews } = require('../controllers/productControllers');
+const { createProduct,getAllProducts,updateProduct, getProductDetails, createProductReview, deleteReview, getProductReviews, deleteProduct } = require('../controllers/productControllers');
 const { createUser } = require('../controllers/userControllers');
 
 const router = express.Router();
 
 router.post("/createUser",createUser);
-router.get('/product/:id' , getProductDetails);
-
 
 
 
@@ -21,7 +19,7 @@ router.post('/product/new' , createProduct);
 router.get('/products',getAllProducts);
 
 // updating a product
-router.put('/product/:id',updateProduct);
+router.put('/product/:id',updateProduct).delete('/product/:id',deleteProduct).get('/product/:id' , getProductDetails);
 
 
 
