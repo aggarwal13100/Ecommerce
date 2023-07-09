@@ -126,6 +126,8 @@ const ProductDetails = () => {
               </p>
             </div>
           </div>
+
+          {/* REVIEW SECTION */}
           <div className="my-12 ">
             <h2 className="text-center text-3xl font-bold text-midnight-green mb-2">Reviews</h2>
             <div className="h-[1px] w-10/12 mx-auto bg-midnight-green"></div>
@@ -137,7 +139,7 @@ const ProductDetails = () => {
               grabCursor={true}
               centeredSlides={true}
               autoplay={{
-                delay: 10000,
+                delay: 5000,
                 disableOnInteraction: false,
               }}
               slidesPerView={"auto"}
