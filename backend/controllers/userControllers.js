@@ -16,7 +16,7 @@ exports.createUser = catchAsyncErrors(
                 url:"profile url"
             }});
 
-        sendToken(user,201,res)
+        sendToken(user,201,res);
     }
 )
 
@@ -178,3 +178,30 @@ exports.updateProfile=catchAsyncErrors( async(req,res,next)=>{
         status:true,
     });
 });
+// to get all users (for admin)
+exports.getAllUser=catchAsyncErrors( async(req,res,next)=>{
+    const users=await User.find();
+
+    res.status(200).json({
+        success:true,
+        users
+    });
+});
+
+// to get single user details (for admin)
+exports.getSingleUser=catchAsyncErrors( async(req,res,next)=>{
+    const user=await User.findById(req.params.id);
+
+    if(!user)
+    {
+      return next(new ErrorHandler(`user does not exist with id = ${req.params.id}`));
+    }
+    res.status(200).json({
+        success:true,
+        user
+    });
+});
+
+
+
+

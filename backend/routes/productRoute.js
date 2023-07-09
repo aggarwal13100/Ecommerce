@@ -14,13 +14,15 @@ router.post("/createUser",createUser);
 
 
 //creating product 
-router.post('/product/new' ,isAuthenticatedUser,authorizeRoles("admin"), createProduct);
+router.post('/admin/product/new' ,isAuthenticatedUser,authorizeRoles("admin"), createProduct);
 
 //getting all products
 router.get('/products',getAllProducts);
 
 // updating a product
-router.put('/product/:id',isAuthenticatedUser,authorizeRoles("admin"),updateProduct).delete('/product/:id',isAuthenticatedUser,authorizeRoles("admin"),deleteProduct).get('/product/:id' , getProductDetails);
+router.route('/admin/product/:id').put(isAuthenticatedUser,authorizeRoles("admin"),updateProduct);
+router.delete('/admin/product/:id',isAuthenticatedUser,authorizeRoles("admin"),deleteProduct);
+router.get('/product/:id' , getProductDetails);
 
 
 
