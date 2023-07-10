@@ -4,17 +4,18 @@ const catchAsyncError = require("../middlewares/catchAsyncErrors");
 const ApiFeatures = require("../utils/apifeatures");
 
 // Admin part
-exports.createProduct=async(req,res,next)=>{
+exports.createProduct=catchAsyncError(async(req,res,next)=>{
+    req.body.user = req.user.id;
     const temp=req.body;
     const product = await Product.create(temp);
     res.status(201).json({
         success:true,
         product
     })
-}
+});
 
 
-exports.getAllProducts = async(req,res,next)=>{
+exports.getAllProducts = catchAsyncError ( async(req,res,next)=>{
 
     const resultPerPage = 5;
     const productCount = await Product.countDocuments();
@@ -27,17 +28,13 @@ exports.getAllProducts = async(req,res,next)=>{
         success:true,
         products,
     })
-}
+});
 
 
-exports.updateProduct=async(req,res,next)=>{
+exports.updateProduct=catchAsyncError ( async(req,res,next)=>{
     let product=await Product.findById(req.params.id);
-    if(!product)
-    {
-        res.status(500).json({
-            success:false,
-            message:"product not found"
-        })
+    if(!product) {
+        return next(new ErrorHandler("Product Not Found" , 500));
     }
     else
     {
@@ -52,9 +49,22 @@ exports.updateProduct=async(req,res,next)=>{
             product
         })
     }
-}
+});
 
-
+exports.deleteProduct=catchAsyncError (  async (req,res,next)=>{
+    const product = await Product.findById(req.params.id);
+    if(!product) {
+        return next(new ErrorHandler("Product Not Found" , 404));
+    }
+    else
+    {
+       await product.deleteOne();
+       res.status(200).json({
+        success:true,
+        message:'product deleted successfully'
+       });
+    }
+});
 
 
 // get the details of single product
@@ -93,21 +103,21 @@ exports.createProductReview = catchAsyncError(
 
         // user already review the product
         const isReviewed = product.reviews.find(
-            review => review.user.toString() === user._id 
+            review => review.user.toString() === user._id.toString() 
         )
 
         if(isReviewed) {
             // updating the review
             let previousRating = 0;
             product.reviews.forEach(review => {
-                if(review.user.toString() === user._id ) {
+                if(review.user.toString() === user._id.toString() ) {
                     previousRating = review.rating;
                     review.rating = rating;
                     review.comment = comment;
                 }
             })
 
-            product.ratings = ((product.ratings * product.reviews.length) + rating - previousRating)/(product.reviews.length);
+            product.ratings = ((product.ratings * product.reviews.length) -previousRating + rating )/(product.reviews.length);
             
         }
         else {
@@ -123,7 +133,7 @@ exports.createProductReview = catchAsyncError(
             success : true ,
         });
     }
-)
+) 
 
 
 // get all reviews of a product

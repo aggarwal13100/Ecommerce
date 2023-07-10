@@ -1,12 +1,11 @@
 const express = require('express');
-const { createProduct,getAllProducts,updateProduct, getProductDetails, createProductReview, deleteReview, getProductReviews } = require('../controllers/productControllers');
+const { createProduct,getAllProducts,updateProduct, getProductDetails, createProductReview, deleteReview, getProductReviews, deleteProduct } = require('../controllers/productControllers');
 const { createUser } = require('../controllers/userControllers');
+const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
 const router = express.Router();
 
 router.post("/createUser",createUser);
-router.get('/product/:id' , getProductDetails);
-
 
 
 
@@ -15,13 +14,15 @@ router.get('/product/:id' , getProductDetails);
 
 
 //creating product 
-router.post('/product/new' , createProduct);
+router.post('/admin/product/new' ,isAuthenticatedUser,authorizeRoles("admin"), createProduct);
 
 //getting all products
 router.get('/products',getAllProducts);
 
 // updating a product
-router.put('/product/:id',updateProduct);
+router.route('/admin/product/:id').put(isAuthenticatedUser,authorizeRoles("admin"),updateProduct);
+router.delete('/admin/product/:id',isAuthenticatedUser,authorizeRoles("admin"),deleteProduct);
+router.get('/product/:id' , getProductDetails);
 
 
 
@@ -29,8 +30,8 @@ router.put('/product/:id',updateProduct);
 
 
 // Add isAuthenticated in below request
-router.put('/review' , createProductReview); 
-router.get('/review' , getProductReviews); 
-router.delete('/review' , deleteReview); 
+router.put('/review',isAuthenticatedUser, createProductReview); 
+router.get('/review' ,isAuthenticatedUser,getProductReviews); 
+router.delete('/review' , isAuthenticatedUser,deleteReview); 
 
 module.exports = router;

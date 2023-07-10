@@ -1,7 +1,10 @@
 const express = require("express");
 // instantiating the server
 const app = express();
+const cookieParser = require("cookie-parser")
 app.use(express.json());
+app.use(cookieParser());
+
 const database = require("./config/database");
 const errorMiddleware = require("./middlewares/error");
 
@@ -22,8 +25,10 @@ database.connectDatabase();
 // importing the ROUTES
 const product = require("./routes/productRoute");
 const order = require("./routes/orderRoute");
-
+const user = require("./routes/userRoute");
 // mounting the routes on /api/v1
+
+app.use("/api/v1",user);
 app.use("/api/v1", product);
 app.use("/api/v1", order);
 
