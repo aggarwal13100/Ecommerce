@@ -104,21 +104,21 @@ exports.createProductReview = catchAsyncError(
 
         // user already review the product
         const isReviewed = product.reviews.find(
-            review => review.user.toString() === user._id 
+            review => review.user.toString() === user._id.toString() 
         )
 
         if(isReviewed) {
             // updating the review
             let previousRating = 0;
             product.reviews.forEach(review => {
-                if(review.user.toString() === user._id ) {
+                if(review.user.toString() === user._id.toString() ) {
                     previousRating = review.rating;
                     review.rating = rating;
                     review.comment = comment;
                 }
             })
 
-            product.ratings = ((product.ratings * product.reviews.length) + rating - previousRating)/(product.reviews.length);
+            product.ratings = ((product.ratings * product.reviews.length) -previousRating + rating )/(product.reviews.length);
             
         }
         else {
@@ -134,7 +134,7 @@ exports.createProductReview = catchAsyncError(
             success : true ,
         });
     }
-)
+) 
 
 
 // get all reviews of a product

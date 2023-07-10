@@ -204,4 +204,39 @@ exports.getSingleUser=catchAsyncErrors( async(req,res,next)=>{
 
 
 
+// update role by admin
 
+exports.updateUserRole=catchAsyncErrors( async(req,res,next)=>{
+    const newUserData={
+        name:req.body.name,
+        email:req.body.email,
+        role:req.body.role,
+    }
+    const user=await User.findByIdAndUpdate(req.params.id,newUserData,{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false
+    })
+    res.status(200).json({
+        status:true,
+    });
+});
+
+
+
+// delete user by admin
+
+exports.deleteUser=catchAsyncErrors( async(req,res,next)=>{
+    const user=await User.findById(req.params.id);
+    if(!user)
+    {
+        return next(new ErrorHandler(`user does'nt exist with id : ${req.params.id}`,400));
+    }
+
+    await user.deleteOne();
+
+    res.status(200).json({
+        success:true,
+        message:"user deleted successfully"
+    });
+});
