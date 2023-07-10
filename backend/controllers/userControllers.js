@@ -2,7 +2,9 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const User = require("../models/userModel");
 const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/jwtToken");
-const sendEmail = require("../utils/sendEmail")
+const sendEmail = require("../utils/sendEmail");
+
+
 exports.createUser = catchAsyncErrors(
     async (req,res,next)=>{
         // console.log(req.body);

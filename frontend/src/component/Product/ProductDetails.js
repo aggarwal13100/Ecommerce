@@ -66,7 +66,7 @@ const ProductDetails = () => {
             <div className="w-10/12 mx-auto flex justify-center items-center md:sticky md:top-0 flex-col">
               {product?.images?.[currIndex] && (
                 <img
-                  className="rounded-xl object-cover max-h-[50vh] md:w-[500px] md:max-w-[50vw]"
+                  className="rounded-xl aspect-square max-h-[50vh] md:w-[500px] md:max-w-[50vw]"
                   src={product.images[currIndex].url}
                   alt="nature"
                 />
