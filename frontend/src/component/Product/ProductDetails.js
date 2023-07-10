@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../actions/productAction";
 import ReactStars from "react-rating-stars-component";
 import Spinner from "../Spinner/Spinner.js";
+import { addToCartItems } from "../../actions/cartAction";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -13,14 +14,30 @@ import "swiper/css/effect-coverflow";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
 import "./review.css";
 import Review from "../Review/Review";
+import {toast} from 'react-toastify';
 
 const ProductDetails = () => {
   const [currIndex, setCurrIndex] = useState(0);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { product, loading } = useSelector(
-    (state) => state.productDetails
-  );
+  const { product, loading } = useSelector((state) => state.productDetails);
+
+  const [quantity, setQuantity] = useState(1);
+
+  const decreaseQuantity = () => {
+    if (quantity <= 1) return;
+    setQuantity(quantity - 1);
+  };
+
+  const increaseQuantity = () => {
+    if (quantity >= product.Stock) return;
+    setQuantity(quantity + 1);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addToCartItems(id , quantity));
+    toast("Added to Cart Successfully");
+  }
 
   useEffect(() => {
     dispatch(getProductDetails(id));
@@ -42,11 +59,9 @@ const ProductDetails = () => {
         <Spinner />
       ) : (
         <div>
-
           {/* HEADER */}
           <div className="text-3xl text-red-500 text-center">Header</div>
           <div className="flex flex-col my-4 md:flex-row md:w-10/12 md:mx-auto md:items-start">
-
             {/* IMAGE SECTION */}
             <div className="w-10/12 mx-auto flex justify-center items-center md:sticky md:top-0 flex-col">
               {product?.images?.[currIndex] && (
@@ -96,15 +111,23 @@ const ProductDetails = () => {
               </div>
               <div className="flex gap-x-2 items-center">
                 <div className="flex  text-xl rounded-lg border items-center">
-                  <button className="px-3 py-[2px] transition-all flex justify-center items-center text-xl bg-dim-gray rounded-l-md text-white hover:bg-gray-800 ">
+                  <button
+                    onClick={decreaseQuantity}
+                    className="px-3 py-[2px] transition-all flex justify-center items-center text-xl bg-dim-gray rounded-l-md text-white hover:bg-gray-800 "
+                  >
                     -
                   </button>
-                  <span className="px-2 py-[2px] ">0</span>
-                  <button className="px-3 py-[2px] transition-all flex justify-center items-center text-xl bg-dim-gray rounded-r-md text-white hover:bg-gray-800">
+                  <span className="px-2 py-[2px] ">{quantity}</span>
+                  <button
+                    onClick={increaseQuantity}
+                    className="px-3 py-[2px] transition-all flex justify-center items-center text-xl bg-dim-gray rounded-r-md text-white hover:bg-gray-800"
+                  >
                     +
                   </button>
                 </div>
-                <button className="border p-1 px-3 rounded-lg font-semibold text-baby-powder transition-all  bg-pine-green  hover:shadow-lg hover:shadow-gray hover:scale-105">
+                <button
+                onClick={addToCartHandler}
+                className="border p-1 px-3 rounded-lg font-semibold text-baby-powder transition-all  bg-pine-green  hover:shadow-lg hover:shadow-gray hover:scale-105">
                   Add to Cart
                 </button>
               </div>
@@ -129,47 +152,45 @@ const ProductDetails = () => {
 
           {/* REVIEW SECTION */}
           <div className="my-12 ">
-            <h2 className="text-center text-3xl font-bold text-midnight-green mb-2">Reviews</h2>
+            <h2 className="text-center text-3xl font-bold text-midnight-green mb-2">
+              Reviews
+            </h2>
             <div className="h-[1px] w-10/12 mx-auto bg-midnight-green"></div>
-            {
-              product?.reviews?.[0] ? 
-              (
-                <Swiper
-              effect={"coverflow"}
-              grabCursor={true}
-              centeredSlides={true}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              slidesPerView={"auto"}
-              coverflowEffect={{
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 0,
-                // rotate: 50,
-                // stretch: 0,
-                // depth: 100,
-                // modifier: 1,
-              }}
-              modules={[Autoplay, EffectCoverflow]}
-              className="mySwiper"
-            >
-              {product?.reviews?.[0] &&
-                product.reviews.map((review) => (
-                  <SwiperSlide>
-                    <Review review={review} />
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-              ) :
-              (
-                <div className="text-2xl text-center my-4">
-                  No Reviews to Show
-                </div>
-              )
-            }
+            {product?.reviews?.[0] ? (
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+                slidesPerView={"auto"}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 0,
+                  // rotate: 50,
+                  // stretch: 0,
+                  // depth: 100,
+                  // modifier: 1,
+                }}
+                modules={[Autoplay, EffectCoverflow]}
+                className="mySwiper"
+              >
+                {product?.reviews?.[0] &&
+                  product.reviews.map((review) => (
+                    <SwiperSlide>
+                      <Review review={review} />
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            ) : (
+              <div className="text-2xl text-center my-4">
+                No Reviews to Show
+              </div>
+            )}
           </div>
         </div>
       )}
