@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const {newOrder, getSingleOrder, myOrders} = require("../controllers/orderControllers")
+const {newOrder, getSingleOrder,getAllOrders,updateOrder, myOrders,deleteOrder} = require("../controllers/orderControllers")
+const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
 router.post('/order/new' , newOrder);
 router.get('/order/:id',getSingleOrder);
-router.get('/order/myOrders',myOrders);
+router.get('/order/me',myOrders);
 
 // Admin Order Route
 router.get('/admin/orders',isAuthenticatedUser,authorizeRoles("admin"),getAllOrders);
