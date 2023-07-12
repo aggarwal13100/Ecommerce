@@ -1,10 +1,10 @@
 import {
-  ADD_TO_CART,
-  CLEAR_ERRORS,
-  ADD_TO_CART_FAIL,
-  REMOVE_CART_ITEM,
-  SAVE_SHIPPING_INFO,
-} from "../constants/cartConstants";
+    ADD_TO_CART,
+    CLEAR_ERRORS,
+    ADD_TO_CART_FAIL,
+    REMOVE_CART_ITEM,
+    SAVE_SHIPPING_INFO,
+  } from "../constants/cartConstants";
 
 import axios from "axios";
 
