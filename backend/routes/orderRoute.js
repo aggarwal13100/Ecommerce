@@ -3,9 +3,9 @@ const router = express.Router();
 const {newOrder, getSingleOrder,getAllOrders,updateOrder, myOrders,deleteOrder} = require("../controllers/orderControllers")
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-router.post('/order/new' , isAuthenticatedUser,newOrder);
-router.get('/order/:id',getSingleOrder);
-router.get('/order/me',myOrders);
+router.post('/order/new' ,isAuthenticatedUser, newOrder);
+router.get('/order/:id',isAuthenticatedUser,authorizeRoles("admin"),getSingleOrder);
+router.get('/order/me',isAuthenticatedUser,myOrders);
 
 // Admin Order Route
 router.get('/admin/orders',isAuthenticatedUser,authorizeRoles("admin"),getAllOrders);
