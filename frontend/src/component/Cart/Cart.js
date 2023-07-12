@@ -1,6 +1,6 @@
 import React from "react";
 import CartItem from "./CartItem";
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate } from "react-router-dom"
 import { useSelector} from "react-redux";
 import { MdRemoveShoppingCart } from "react-icons/md";
 
@@ -13,6 +13,10 @@ const Cart = () => {
       totalItems += item.quantity;
       totalPrice += (item.price * item.quantity);
     });
+
+    const checkoutHandler = () => {
+      navigate("/login?redirect=shipping");
+    }
 
   return (
     <div>
@@ -30,9 +34,11 @@ const Cart = () => {
                 Continue Shopping
               </button>
               <div className="hidden md:block italic  ">shopping bag ({cartItems.length})</div>
-              <button className="border-midnight-green border rounded-md px-2 py-1 text-xs uppercase bg-midnight-green text-baby-powder transition-transform hover:scale-105">
-                CHECKOUT
-              </button>
+                <button
+                onClick={checkoutHandler}
+                className="border-midnight-green border rounded-md px-2 py-1 text-xs uppercase bg-midnight-green text-baby-powder transition-transform hover:scale-105">
+                  CHECKOUT
+                </button>
             </div>
             <div className="flex flex-col gap-4 py-4 px-2 md:flex-row md:justify-between ">
               {/* CART LIST */}
@@ -42,7 +48,7 @@ const Cart = () => {
                         cartItems.map(item => <CartItem key={item.product_id} item = {item }/>)
               }
               </div>
-              {/* ORDER SUMMARY */}
+              {/* CART SUMMARY */}
               <div className="p-4 border-[1px] border-midnight-green shadow-lg rounded-xl md:min-w-[30vw] h-fit md:sticky md:top-5">
                 <div className="text-lg text-center font">CART SUMMARY</div>
                 <div className="flex justify-between p-1">
@@ -57,7 +63,9 @@ const Cart = () => {
                     totalPrice
                   }</div>
                 </div>
-                <button className="ml-1 my-2 p-2 border-gray-800 border-r-[2px] border-b-[2px] bg-[#80808060] border  transition-all duration-300  hover:font-semibold">
+                <button
+                onClick={checkoutHandler}
+                className="ml-1 my-2 p-2 border-gray-800 border-r-[2px] border-b-[2px] bg-[#80808060] border  transition-all duration-300  hover:font-semibold">
                   CHECKOUT
                 </button>
               </div>

@@ -3,6 +3,10 @@ import {
     CLEAR_ERRORS,
     ADD_TO_CART_FAIL,
     REMOVE_CART_ITEM,
+<<<<<<< HEAD
+=======
+    SAVE_SHIPPING_INFO,
+>>>>>>> 7cd1d6b (adding pages for shipping and confirm order)
   } from "../constants/cartConstants";
 
 import axios from 'axios';
@@ -59,4 +63,15 @@ export const clearErrors = () => async (dispatch) => {
     dispatch({
         type : CLEAR_ERRORS
     }); 
+}
+
+
+// Clearing Errors
+export const saveShippingInfo = (data) => async (dispatch) => {
+    dispatch({
+        type : SAVE_SHIPPING_INFO,
+        payload : data,
+    }); 
+
+    localStorage.setItem("shippingInfo" , JSON.stringify(data));
 }

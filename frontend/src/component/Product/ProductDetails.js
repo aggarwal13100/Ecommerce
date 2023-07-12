@@ -141,7 +141,7 @@ const ProductDetails = () => {
                   {product.Stock > 0 ? "InStock" : "Out of Stock"}
                 </span>
               </div>
-              <h3 className="font-bold mt-2 text-lg w-full mx-auto">
+              <h3 className="font-bold mt-2 text-lg w-full mx-auto whitespace-pre-line">
                 Product Description
               </h3>
               <p className="text-sm my-1 w-full mx-auto  ">
