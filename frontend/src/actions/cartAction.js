@@ -3,10 +3,7 @@ import {
     CLEAR_ERRORS,
     ADD_TO_CART_FAIL,
     REMOVE_CART_ITEM,
-<<<<<<< HEAD
-=======
     SAVE_SHIPPING_INFO,
->>>>>>> 7cd1d6b (adding pages for shipping and confirm order)
   } from "../constants/cartConstants";
 
 import axios from 'axios';
