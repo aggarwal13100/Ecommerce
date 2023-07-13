@@ -1,3 +1,4 @@
+import LoginSignUp from "./component/User/LoginSignUp";
 import { Routes, Route } from "react-router-dom";
 import ProductDetails from "./component/Product/ProductDetails.js";
 import Cart from "./component/Cart/Cart.js";
@@ -29,8 +30,7 @@ function App() {
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/shipping" element={<Shipping />} />
             <Route exact path="/order/confirm" element={<ConfirmOrder />} />
-            <Route exact path="/success" element={<OrderSuccess
-             />} />
+            <Route exact path="/success" element={<OrderSuccess/>} />
             <Route
                 exact
                 path="/payment/process"
@@ -40,6 +40,7 @@ function App() {
                     </Elements>)
                 }
             />
+            <Route exact path = "/login" element={<LoginSignUp/>} />
         </Routes>
     );
 }

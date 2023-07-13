@@ -1,9 +1,17 @@
 const express = require("express");
 // instantiating the server
 const app = express();
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
+const cloudinary = require("cloudinary");
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload")
+
+
+
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(fileUpload());
 
 const database = require("./config/database");
 const errorMiddleware = require("./middlewares/error");
@@ -21,6 +29,12 @@ dotenv.config({ path: "backend/config/config.env" });
 
 // connecting to database
 database.connectDatabase();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret:process.env.CLOUD_API_SECRET
+})
 
 // importing the ROUTES
 const product = require("./routes/productRoute");
