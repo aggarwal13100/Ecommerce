@@ -34,7 +34,7 @@ const ConfirmOrder = () => {
 
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-    navigate("/process/payment");
+    navigate("/payment/process");
   };
   return (
     <div>
@@ -95,15 +95,15 @@ const ConfirmOrder = () => {
             <div className="h-[1px] bg-midnight-green my-4"></div>
             <div className="flex justify-between p-1">
               <div className="font-semibold">SUBTOTAL</div>
-              <div >₹ {totalPrice}</div>
+              <div >₹ {subtotal}</div>
             </div>
             <div className="flex justify-between p-1">
               <div className="font-semibold">Shipping Charges</div>
-              <div>₹ {totalItems}</div>
+              <div>₹ {shippingCharges}</div>
             </div>
             <div className="flex justify-between p-1">
               <div className="font-semibold">GST</div>
-              <div >₹ {totalItems}</div>
+              <div >₹ {tax}</div>
             </div>
             <div className="h-[1px] bg-midnight-green my-4"></div>
             <div className="flex justify-between p-1 font-semibold text-lg">

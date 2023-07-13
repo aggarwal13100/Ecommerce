@@ -35,6 +35,7 @@ const Shipping = () => {
 
   return (
     <>
+    <div className="text-xl text-center p-2">HEADER</div>
     <div className="mt-8">
       <CheckoutSteps activeStep = {0}/>
     </div>

@@ -26,11 +26,13 @@ database.connectDatabase();
 const product = require("./routes/productRoute");
 const order = require("./routes/orderRoute");
 const user = require("./routes/userRoute");
+const payment = require("./routes/paymentRoute");
 // mounting the routes on /api/v1
 
 app.use("/api/v1",user);
 app.use("/api/v1", product);
 app.use("/api/v1", order);
+app.use("/api/v1", payment);
 
 // Middleware for Errors
 // we have to use this middleware after mounting all the routes
