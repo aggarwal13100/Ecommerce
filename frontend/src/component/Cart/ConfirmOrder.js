@@ -6,15 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 const ConfirmOrder = () => {
   const navigate = useNavigate();
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  //   const {user} = useSelector((user) => state.user);
+    const {user} = useSelector((state) => state.user);
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
-    0
-  );
-
-  const totalItems = cartItems.reduce(
-    (acc, item) => acc + item.quantity ,
     0
   );
 
@@ -49,7 +44,7 @@ const ConfirmOrder = () => {
             <div className="pl-4 flex flex-col gap-y-2 mb-3">
               <div className="flex items-center">
                 <div className="font-semibold pr-1">Name : </div>
-                {/* <div className="text-sm">{user.name}</div> */}
+                <div className="text-sm">{user.name}</div>
               </div>
               <div className="flex items-center">
                 <div className="font-semibold pr-1">Phone : </div>

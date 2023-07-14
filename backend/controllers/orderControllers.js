@@ -5,33 +5,33 @@ const catchAsyncError = require("../middlewares/catchAsyncErrors");
 
 // create order
 exports.newOrder = catchAsyncError(async (req, res, next) => {
-  // fetching details from the request body
-  const {
-    shippingInfo,
-    orderItems,
-    paymentInfo,
-    itemsPrice,
-    taxPrice,
-    shippingPrice,
-    totalPrice,
-  } = req.body;
-
-  const order = await Order.create({
-    shippingInfo,
-    orderItems,
-    paymentInfo,
-    itemsPrice,
-    taxPrice,
-    shippingPrice,
-    totalPrice,
-    paidAt: Date.now(),
-    user: req.user._id,
-  });
-
-  res.status(200).json({
-    success: true,
-    order,
-  });
+      // fetching details from the request body
+      const {
+        shippingInfo,
+        orderItems,
+        paymentInfo,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+    } = req.body;
+    
+    const order = await Order.create({
+        shippingInfo,
+        orderItems,
+        paymentInfo,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+        paidAt: Date.now(),
+        user: req.user._id,
+      });
+    
+      res.status(200).json({
+        success: true,
+        order,
+      });
 });
 
 // get Single Order
@@ -40,7 +40,7 @@ exports.getSingleOrder = catchAsyncError(
     async (req , res ,next) => {
         const orderId = req.params.id ;
         const order = await Order.findById(orderId).populate("user" , "name email");
-
+        
   // order not found
   if (!order) {
     return next(new ErrorHandler("Order Not Found", 404));
@@ -56,13 +56,12 @@ exports.getSingleOrder = catchAsyncError(
 
 exports.myOrders = catchAsyncError(
     async (req , res ,next) => {
-        console.log(`printing = ${req.user._id}`);
         const userId = req.user._id;
         const orders = await Order.find({user : userId});
         
         res.status(200).json({
             success : true ,
-            order : orders,
+            orders : orders,
         })
 
 });

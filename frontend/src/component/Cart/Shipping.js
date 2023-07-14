@@ -29,7 +29,6 @@ const Shipping = () => {
       saveShippingInfo(formData)
     );
     navigate("/order/confirm");
-    // console.log(formData);
   }
 
 

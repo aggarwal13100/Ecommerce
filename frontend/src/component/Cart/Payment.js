@@ -26,7 +26,7 @@ const Payment = () => {
     const payBtn = useRef(null);
 
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-    // const {user } = useSelector((state) => state.user);
+    const {user } = useSelector((state) => state.user);
     const { error } = useSelector((state) => state.newOrder);
 
     const paymentData = {
@@ -67,10 +67,8 @@ const Payment = () => {
                 payment_method: {
                     card: elements.getElement(CardNumberElement),
                     billing_details: {
-                        // name: user.name,
-                        // email: user.email,
-                        name: "dev",
-                        email: "dev@gmail.com",
+                        name: user.name,
+                        email: user.email,
                         address: {
                             line1: shippingInfo.address,
                             city: shippingInfo.city,
@@ -95,7 +93,7 @@ const Payment = () => {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status,
                     };
-
+                    console.log(order);
                     dispatch(createOrder(order));
                     navigate("/success");
 

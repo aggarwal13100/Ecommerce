@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css"
 import Spinner from "../Spinner/Spinner"
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate , useLocation} from "react-router-dom";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
@@ -13,6 +13,7 @@ import {toast} from 'react-toastify';
 const LoginSignUp = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    let location = useLocation();
   
     const { error, loading, isAuthenticated} = useSelector(
       (state) => state.user
@@ -50,7 +51,6 @@ const LoginSignUp = () => {
       myForm.set("email", email);
       myForm.set("password", password);
       myForm.set("avatar", avatar);
-      console.log(myForm);
       dispatch(register(myForm));
     };
   
@@ -71,19 +71,18 @@ const LoginSignUp = () => {
       }
     };
   
-    // const redirect = location.search ? location.search.split("=")[1] : "/account";
+    const redirect = location.search ? location.search.split("=")[1] : "account";
   
     useEffect(() => {
       if (error) {
-        console.log(error);
         toast(error);
         dispatch(clearErrors());
       }
   
       if (isAuthenticated) {
-        navigate("/account");
+        navigate(`/${redirect}`);
       }
-    }, [dispatch, error, navigate, isAuthenticated]);
+    }, [dispatch, error, navigate, isAuthenticated,redirect ,location]);
   
     const switchTabs = (e, tab) => {
       if (tab === "login") {

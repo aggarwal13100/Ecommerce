@@ -12,7 +12,7 @@ const OrderSuccess = () => {
                 <h2 className='text-2xl  mb-2'>Congrats</h2>
                 <p className='text-base font-semibold text-[#333]'>Your Order Placed Successfully</p>
             </div>
-            <Link to = "/order/me">
+            <Link to = "/orders">
             <button className='relative bg-midnight-green text-white px-6 py-2 rounded-sm tracking-wider
             hover:bg-gradient-to-r hover:from-[#037971ff] transition-colors duration-500 ease-in-out hover:to-midnight-green'>
             View Orders
