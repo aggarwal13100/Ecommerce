@@ -1,6 +1,10 @@
 // for home page
 
 
+export const ALL_PRODUCT_REQUEST = "PRODUCT_DETAILS_REQUESTS";
+export const ALL_PRODUCT_SUCCESS = "PRODUCT_DETAILS_SUCCESS";
+export const ALL_PRODUCT_FAIL = "PRODUCT_DETAILS_FAIL";
+
 
 
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
