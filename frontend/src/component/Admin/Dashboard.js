@@ -8,7 +8,7 @@ import { Doughnut, Line } from "react-chartjs-2"
 import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction.js";
-// import { getAllUsers } from "../../actions/userAction.js";
+import { getAllUsers } from "../../actions/userAction.js";
 import MetaData from "../layout/MetaData";
 
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
   
     const { orders } = useSelector((state) => state.allOrders);
   
-    // const { users } = useSelector((state) => state.allUsers);
+    const { users } = useSelector((state) => state.allUsers);
   
     let outOfStock = 0;
   
@@ -33,7 +33,7 @@ const Dashboard = () => {
     useEffect(() => {
       dispatch(getAdminProduct());
       dispatch(getAllOrders());
-    //   dispatch(getAllUsers());
+      dispatch(getAllUsers());
     }, [dispatch]);
   
     let totalAmount = 0;
@@ -60,10 +60,11 @@ const Dashboard = () => {
         {
           backgroundColor: ["#00A6B4", "#6800B4"],
           hoverBackgroundColor: ["#4B5000", "#35014F"],
-          data: [outOfStock, products.length - outOfStock],
+          data: [outOfStock,products.length - outOfStock],
         },
       ],
     };
+    // console.log(products);
   
     return (
       <div className="dashboard">
@@ -90,7 +91,7 @@ const Dashboard = () => {
               </Link>
               <Link to="/admin/users">
                 <p>Users</p>
-                {/* <p>{users && users.length}</p> */}
+                <p>{users && users.length}</p>
               </Link>
             </div>
           </div>

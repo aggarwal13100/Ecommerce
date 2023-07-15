@@ -5,16 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
   getAdminProduct,
-//   deleteProduct,
+  deleteProduct,
 } from "../../actions/productAction";
-import { Link , useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {toast} from 'react-toastify';
 import Button from '@mui/material/Button';
 import MetaData from "../layout/MetaData";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SideBar from "./Sidebar";
-// import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
+import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 
 const ProductList = () => {
     const dispatch = useDispatch();
@@ -22,13 +22,13 @@ const ProductList = () => {
   
     const { error, products } = useSelector((state) => state.products);
   
-    const { error: deleteError } = useSelector(
+    const { error: deleteError, isDeleted } = useSelector(
       (state) => state.product
     );
   
-    // const deleteProductHandler = (id) => {
-    //   dispatch(deleteProduct(id));
-    // };
+    const deleteProductHandler = (id) => {
+      dispatch(deleteProduct(id));
+    };
   
     useEffect(() => {
       if (error) {
@@ -41,14 +41,14 @@ const ProductList = () => {
         dispatch(clearErrors());
       }
   
-    //   if (isDeleted) {
-    //     toast("Product Deleted Successfully");
-    //     navigate("/admin/dashboard");
-    //     dispatch({ type: DELETE_PRODUCT_RESET });
-    //   }
+      if (isDeleted) {
+        toast("Product Deleted Successfully");
+        navigate("/admin/dashboard");
+        dispatch({ type: DELETE_PRODUCT_RESET });
+      }
   
       dispatch(getAdminProduct());
-    }, [dispatch, error, deleteError, navigate]);
+    }, [dispatch, deleteError,error,isDeleted, navigate]);
   
     const columns = [
       { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
@@ -90,9 +90,9 @@ const ProductList = () => {
               </Link>
   
               <Button
-                // onClick={() =>
-                //   deleteProductHandler(params.getValue(params.id, "id"))
-                // }
+                onClick={() =>
+                  deleteProductHandler(params.getValue(params.id, "id"))
+                }
               >
                 <DeleteIcon />
               </Button>
@@ -133,7 +133,7 @@ const ProductList = () => {
             />
           </div>
         </div>
-      </Fragment>
+      // </Fragment>
     );
   };
   
