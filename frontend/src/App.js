@@ -9,10 +9,13 @@ import axios from "axios";
 import Payment from "./component/Cart/Payment.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Header from "./component/layout/Header/Header.js";
+import Footer from "./component/layout/Footer/Footer.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails";
 
+import Home from "./component/Home/Home.js";
 function App() {
     const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -26,8 +29,10 @@ function App() {
     }, []);
 
     return (
+        <>
+        <Header/>
         <Routes>
-            <Route exact path="/" element={<div>home page</div>} />
+            <Route exact path="/" element={<Home/>} />
             <Route exact path="/product/:id" element={<ProductDetails />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/shipping" element={<Shipping />} />
@@ -46,6 +51,8 @@ function App() {
             <Route exact path = "/login" element={<LoginSignUp/>} />
             <Route exact path = "/order/:id" element={<OrderDetails/>} />
         </Routes>
+        <Footer/>
+        </>
     );
 }
 
