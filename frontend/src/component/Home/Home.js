@@ -20,7 +20,7 @@ const Home = () => {
       <h1>FIND AMAZING PRODUCTS BELOW</h1>
    
       <a href="#container">
-        <button>
+        <button className="bg red">
           Scroll <CgMouse />
         </button>
       </a>

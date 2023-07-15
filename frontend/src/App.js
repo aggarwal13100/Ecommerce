@@ -14,6 +14,8 @@ import Footer from "./component/layout/Footer/Footer.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
 
 import Home from "./component/Home/Home.js";
 function App() {
@@ -30,28 +32,30 @@ function App() {
 
     return (
         <>
-        <Header/>
-        <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route exact path="/product/:id" element={<ProductDetails />} />
-            <Route exact path="/cart" element={<Cart />} />
-            <Route exact path="/shipping" element={<Shipping />} />
-            <Route exact path="/order/confirm" element={<ConfirmOrder />} />
-            <Route exact path="/success" element={<OrderSuccess/>} />
-            <Route exact path="/orders" element={<MyOrders/>} />
-            <Route
-                exact
-                path="/payment/process"
-                element={
-                    stripeApiKey && (<Elements stripe={loadStripe(stripeApiKey)}>
-                        <Payment />
-                    </Elements>)
-                }
-            />
-            <Route exact path = "/login" element={<LoginSignUp/>} />
-            <Route exact path = "/order/:id" element={<OrderDetails/>} />
-        </Routes>
-        <Footer/>
+            <Header />
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/product/:id" element={<ProductDetails />} />
+                <Route exact path="/cart" element={<Cart />} />
+                <Route exact path="/shipping" element={<Shipping />} />
+                <Route exact path="/order/confirm" element={<ConfirmOrder />} />
+                <Route exact path="/success" element={<OrderSuccess />} />
+                <Route exact path="/orders" element={<MyOrders />} />
+                <Route exact path="/admin/products" element={<ProductList />} />
+                <Route exact path="/admin/dashboard" element={<Dashboard />}/>
+                <Route
+                    exact
+                    path="/payment/process"
+                    element={
+                        stripeApiKey && (<Elements stripe={loadStripe(stripeApiKey)}>
+                            <Payment />
+                        </Elements>)
+                    }
+                />
+                <Route exact path="/login" element={<LoginSignUp />} />
+                <Route exact path="/order/:id" element={<OrderDetails />} />
+            </Routes>
+            <Footer />
         </>
     );
 }
