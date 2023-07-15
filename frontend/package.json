@@ -55,6 +55,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://192.168.29.244:4000",
   "devDependencies": {
     "tailwindcss": "^3.3.2"
   }
