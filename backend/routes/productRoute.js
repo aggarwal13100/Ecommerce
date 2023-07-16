@@ -18,7 +18,7 @@ router.get('/product/:id' , getProductDetails);
 
 // Add isAuthenticated in below request
 router.put('/review',isAuthenticatedUser, createProductReview); 
-router.get('/review' ,getProductReviews); 
-router.delete('/review' , isAuthenticatedUser,deleteReview); 
+router.get('/reviews' ,getProductReviews); 
+router.delete('/reviews' , isAuthenticatedUser,deleteReview); 
 
 module.exports = router;

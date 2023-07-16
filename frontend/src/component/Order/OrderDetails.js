@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const OrderDetails = () => {
     const [searchParams] = useSearchParams();
-    const id = searchParams.get("id");
+    const id = searchParams.get('id');
     const { order, error, loading } = useSelector(
         (state) => state.orderDetails
     );
@@ -19,9 +19,10 @@ const OrderDetails = () => {
             toast.error(error);
             dispatch(clearErrors());
         }
-        dispatch(getOrderDetails());
+        dispatch(getOrderDetails(id));
     }, [dispatch, error, id]);
-    console.log(order);
+    // console.log(searchParams);
+    // console.log(id);
     return (
         <div className="w-full min-h-[100vh] overflow-x-hidden">
             {loading ? (

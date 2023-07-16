@@ -27,16 +27,16 @@ import ProductReviews from "./component/Admin/ProductReviews.js"
 
 import Home from "./component/Home/Home.js";
 function App() {
-    // const [stripeApiKey, setStripeApiKey] = useState("");
+    const [stripeApiKey, setStripeApiKey] = useState("");
 
-    // // async function getStripeApiKey() {
-    // //     const { data } = await axios.get("/api/v1/stripeapikey");
-    // //     setStripeApiKey(data.stripeApiKey);
-    // // }
+    async function getStripeApiKey() {
+        const { data } = await axios.get("/api/v1/stripeapikey");
+        setStripeApiKey(data.stripeApiKey);
+    }
 
-    // // useEffect(() => {
-    // //     getStripeApiKey();
-    // // }, []);
+    useEffect(() => {
+        getStripeApiKey();
+    }, []);
 
     return (
         <>
@@ -60,7 +60,7 @@ function App() {
                 <Route exact path="/admin/reviews" element={<ProductReviews />} />
 
 
-                {/* <Route
+                <Route
                     exact
                     path="/payment/process"
                     element={
@@ -68,7 +68,7 @@ function App() {
                             <Payment />
                         </Elements>)
                     }
-                /> */}
+                />
                 <Route exact path="/login" element={<LoginSignUp />} />
                 <Route exact path="/order/:id" element={<OrderDetails />} />
             </Routes>

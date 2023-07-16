@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import "./newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, updateProduct, getProductDetails} from "../../actions/productAction";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useSearchParams} from "react-router-dom";
 import {toast} from 'react-toastify';
 import Button from '@mui/material/Button';
 import MetaData from "../layout/MetaData";
@@ -16,9 +16,10 @@ import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 
 
 
-const UpdateProduct = ({ match }) => {
-    const dispatch = useDispatch()
+const UpdateProduct = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
   
     const { error, product } = useSelector((state) => state.productDetails);
   
@@ -47,7 +48,7 @@ const UpdateProduct = ({ match }) => {
       "SmartPhones",
     ];
   
-    const productId = match.params.id;
+    const productId = searchParams.id;
   
     useEffect(() => {
       if (product && product._id !== productId) {

@@ -78,7 +78,7 @@ exports.getAllOrders = catchAsyncError(
         res.status(200).json({
             success : true ,
             totalAmount,
-            order : orders,
+            orders,
         })
 
     }

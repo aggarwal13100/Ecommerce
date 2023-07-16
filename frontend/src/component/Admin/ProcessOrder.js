@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import MetaData from "../layout/MetaData";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Typography } from '@mui/material';
 import SideBar from "./Sidebar";
 import {
@@ -16,9 +16,10 @@ import Button from '@mui/material/Button';
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import "./processOrder.css";
 
-const ProcessOrder = ({match }) => {
+const ProcessOrder = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);
+  const [searchParams] = useSearchParams();
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
@@ -27,13 +28,14 @@ const ProcessOrder = ({match }) => {
 
     myForm.set("status", status);
 
-    dispatch(updateOrder(match.params.id, myForm));
+    dispatch(updateOrder(searchParams.id, myForm));
   };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [status, setStatus] = useState("");
+  console.log(searchParams.id);
 
   useEffect(() => {
     if (error) {
@@ -49,8 +51,8 @@ const ProcessOrder = ({match }) => {
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
-    dispatch(getOrderDetails(match.params.id));
-  }, [dispatch, navigate, error, match.params.id, isUpdated, updateError]);
+    dispatch(getOrderDetails(searchParams.id));
+  }, [dispatch, navigate, error, searchParams.id, isUpdated, updateError]);
 
   return (
     <Fragment>

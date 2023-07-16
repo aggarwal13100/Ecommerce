@@ -47,8 +47,8 @@ const Dashboard = () => {
       datasets: [
         {
           label: "TOTAL AMOUNT",
-          backgroundColor: ["tomato"],
-          hoverBackgroundColor: ["rgb(197, 72, 49)"],
+          backgroundColor: ["rgb(21, 152, 149)"],
+          hoverBackgroundColor: ["rgb(26, 95, 122)"],
           data: [0, totalAmount],
         },
       ],
@@ -64,7 +64,7 @@ const Dashboard = () => {
         },
       ],
     };
-    // console.log(products);
+    // console.log(orders.length);
   
     return (
       <div className="dashboard">

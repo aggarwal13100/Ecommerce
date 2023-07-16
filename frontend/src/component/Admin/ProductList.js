@@ -43,7 +43,7 @@ const ProductList = () => {
   
       if (isDeleted) {
         toast("Product Deleted Successfully");
-        navigate("/admin/dashboard");
+        navigate("/admin/products");
         dispatch({ type: DELETE_PRODUCT_RESET });
       }
   
@@ -85,13 +85,13 @@ const ProductList = () => {
         renderCell: (params) => {
           return (
             <Fragment>
-              <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
+              <Link to={`/admin/product/${params.id}`}>
                 <EditIcon />
               </Link>
   
               <Button
                 onClick={() =>
-                  deleteProductHandler(params.getValue(params.id, "id"))
+                  deleteProductHandler(params.id)
                 }
               >
                 <DeleteIcon />
