@@ -1,3 +1,4 @@
+// reducers are used to update the state of store according to actions
 import {
   // for single product page
   PRODUCT_DETAILS_REQUEST,
