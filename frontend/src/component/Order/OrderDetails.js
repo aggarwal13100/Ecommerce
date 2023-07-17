@@ -19,8 +19,9 @@ const OrderDetails = () => {
             dispatch(clearErrors());
         }
         dispatch(getOrderDetails(id));
-    }, [dispatch,error, id]);
-    
+    }, [dispatch, error, id]);
+    // console.log(searchParams);
+    // console.log(id);
     return (
         <div className="w-full min-h-[100vh] overflow-x-hidden">
             {loading ? (

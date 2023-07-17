@@ -66,28 +66,57 @@ exports.myOrders = catchAsyncError(async (req, res, next) => {
 
 // get all Orders -- Admin
 
-exports.getAllOrders = catchAsyncError(async (req, res, next) => {
-    const orders = await Order.find();
-    let totalAmount = 0;
-    orders.forEach((order) => {
-        totalAmount += order.totalPrice;
-    });
-    res.status(200).json({
-        success: true,
-        totalAmount,
-        order: orders,
-    });
-});
+exports.getAllOrders = catchAsyncError(
+    async (req , res ,next) => {
+        const orders = await Order.find();
+        let totalAmount=0;
+        orders.forEach(order=>{
+            totalAmount+=order.totalPrice;
+        })
+        res.status(200).json({
+            success : true ,
+            totalAmount,
+            orders,
+        })
+
+    }
+);
 
 // 4:26:15
 
 // update Order Status -- Admin
-exports.updateOrder = catchAsyncError(async (req, res, next) => {
-    const order = await Order.findById(req.params.id);
-    if (order.orderStatus === "Delivered") {
-        return next(
-            new ErrorHandler("you have already delivered this order", 404)
-        );
+exports.updateOrder = catchAsyncError(
+    async (req , res ,next) => {
+        const order = await Order.findById(req.params.id);
+        if (!order) {
+            return next(new ErrorHander("Order not found with this Id", 404));
+          }
+        
+        if(order.orderStatus==="Delivered")
+        {
+            return next(new ErrorHandler("you have already delivered this order",404));
+        }
+
+        if (req.body.status === "Shipped") {
+            order.orderItems.forEach(async (o) => {
+              await updateStock(o.product_id, o.quantity);
+            });
+          }
+
+
+       order.orderStatus = req.body.status;
+
+       if(req.body.status==="Delivered")
+       {
+        order.deliveredAt =Date.now();
+       }
+
+       await order.save({validateBeforeSave : false});
+
+        res.status(200).json({
+            success : true ,
+        })
+
     }
 
     order.orderItems.forEach(async (i) => {

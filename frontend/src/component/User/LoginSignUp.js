@@ -138,7 +138,7 @@ const LoginSignUp = () => {
                     />
                   </div>
                   <Link to="/password/forgot">Forget Password ?</Link>
-                  <input type="submit" value="Login" className="loginBtn bg-[#F0745E]" />
+                  <input type="submit" value="Login" className="loginBtn bg-[#01796F]" />
                 </form>
                 <form
                   className="signUpForm"
@@ -189,7 +189,7 @@ const LoginSignUp = () => {
                       onChange={registerDataChange}
                     />
                   </div>
-                  <input type="submit" value="Register" className="signUpBtn bg-[#F0745E]" />
+                  <input type="submit" value="Register" className="signUpBtn bg-[#01796F]" />
                 </form>
               </div>
             </div>

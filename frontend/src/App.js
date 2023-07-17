@@ -14,6 +14,16 @@ import Footer from "./component/layout/Footer/Footer.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
+import NewProduct from "./component/Admin/NewProduct.js";
+import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import OrderList from "./component/Admin/OrderList.js";
+import ProcessOrder from "./component/Admin/ProcessOrder.js";
+import UsersList from "./component/Admin/UsersList.js";
+import UpdateUser from "./component/Admin/UpdateUser.js";
+import ProductReviews from "./component/Admin/ProductReviews.js";
+
 import Home from "./component/Home/Home.js";
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
 
@@ -31,32 +41,60 @@ function App() {
 
     return (
         <>
-        <Header/>
-        <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route exact path="/product/:id" element={<ProductDetails />} />
-            {/* <Route element={<ProtectedRoute/>}>
+            <Footer />
+            <Header />
+            <Routes>
+                {/* <Route element={<ProtectedRoute/>}>
                 <Route exact path="/cart" element={<Cart />} />
             </Route> */}
-            <Route exact path="/cart" element={<Cart />} />
-            <Route exact path="/shipping" element={<Shipping />} />
-            <Route exact path="/success" element={<OrderSuccess/>} />
-            <Route exact path="/orders" element={<MyOrders/>} />
-            <Route
-                exact
-                path="/payment/process"
-                element={
-                    stripeApiKey && (<Elements stripe={loadStripe(stripeApiKey)}>
-                        <Payment />
-                    </Elements>)
-                }
-            />
-            <Route exact path = "/login" element={<LoginSignUp/>} />
-            <Route exact path="/yourOrder/confirm" element={<ConfirmOrder />} />
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/product/:id" element={<ProductDetails />} />
+                <Route exact path="/cart" element={<Cart />} />
+                <Route exact path="/shipping" element={<Shipping />} />
+                <Route
+                    exact
+                    path="/yourOrder/confirm"
+                    element={<ConfirmOrder />}
+                />
+                <Route exact path="/success" element={<OrderSuccess />} />
+                <Route exact path="/orders" element={<MyOrders />} />
+                <Route exact path="/admin/products" element={<ProductList />} />
+                <Route exact path="/admin/dashboard" element={<Dashboard />} />
+                <Route exact path="/admin/product" element={<NewProduct />} />
+                <Route
+                    exact
+                    path="/admin/product/:id"
+                    element={<UpdateProduct />}
+                />
+                <Route exact path="/admin/orders" element={<OrderList />} />
+                <Route
+                    exact
+                    path="/admin/order/:id"
+                    element={<ProcessOrder />}
+                />
+                <Route exact path="/admin/users" element={<UsersList />} />
+                <Route exact path="/admin/user/:id" element={<UpdateUser />} />
+                <Route
+                    exact
+                    path="/admin/reviews"
+                    element={<ProductReviews />}
+                />
 
-            <Route exact path = "/order/:id" element={<OrderDetails/>} />
-        </Routes>
-        <Footer/>
+                <Route
+                    exact
+                    path="/payment/process"
+                    element={
+                        stripeApiKey && (
+                            <Elements stripe={loadStripe(stripeApiKey)}>
+                                <Payment />
+                            </Elements>
+                        )
+                    }
+                />
+                <Route exact path="/login" element={<LoginSignUp />} />
+                <Route exact path="/order/:id" element={<OrderDetails />} />
+            </Routes>
+            <Footer />
         </>
     );
 }

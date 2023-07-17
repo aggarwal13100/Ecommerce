@@ -3,7 +3,7 @@ import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
 
 const options = {
-  burgerColorHover: "#eb4034",
+  burgerColorHover: "#01796F",
   logo,
   logoWidth: "20vmax",
   navColor1: "white",
@@ -29,9 +29,9 @@ const options = {
   profileIconColor: "rgba(35, 35, 35,0.8)",
   searchIconColor: "rgba(35, 35, 35,0.8)",
   cartIconColor: "rgba(35, 35, 35,0.8)",
-  profileIconColorHover: "#eb4034",
-  searchIconColorHover: "#eb4034",
-  cartIconColorHover: "#eb4034",
+  profileIconColorHover: "#01796F",
+  searchIconColorHover: "#01796F",
+  cartIconColorHover: "#01796F",
   cartIconMargin: "1vmax",
 };
 

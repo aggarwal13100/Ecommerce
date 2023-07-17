@@ -32,11 +32,11 @@
     width: 100%;
   }
   .login_signUp_toggle > p:hover {
-    color: rgb(255,99,71);
+    color: rgb(1,121,111);
   }
   
   .LoginSignUpBox > div > button {
-    background-color: rgb(255,99,71);
+    background-color: rgb(1,121,111);
     height: 3px;
     width: 50%;
     border: none;
@@ -141,7 +141,7 @@
   
   .loginBtn:hover,
   .signUpBtn:hover {
-    background-color: rgb(179, 66, 46);
+    background-color: rgb(2, 85, 78);
   }
   
   .shiftToLeft {
