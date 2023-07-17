@@ -31,7 +31,7 @@
     justify-content: center;
   }
   .dashboardSummary > div > p {
-    background-color: rgb(74, 85, 162);
+    background-color: #037971ff;
     color: white;
     font: 300 1.3rem "Roboto";
     text-align: center;
