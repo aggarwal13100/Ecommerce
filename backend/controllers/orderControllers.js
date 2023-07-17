@@ -117,7 +117,7 @@ exports.updateOrder = catchAsyncError(
             success : true ,
         })
 
-    }
+    
 
     order.orderItems.forEach(async (i) => {
         await updateStock(i.product, i.quantity);
