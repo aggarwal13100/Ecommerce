@@ -93,7 +93,7 @@ const Payment = () => {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status,
                     };
-                    console.log(order);
+                    
                     dispatch(createOrder(order));
                     navigate("/success");
 
