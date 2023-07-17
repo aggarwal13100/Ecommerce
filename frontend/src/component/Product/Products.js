@@ -58,7 +58,7 @@ const Products = ({ match }) => {
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
+  }, [dispatch, keyword, currentPage, price, category, ratings, error]);
 
   return (
     <Fragment>
