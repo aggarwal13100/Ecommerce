@@ -133,7 +133,7 @@ const ProductList = () => {
             />
           </div>
         </div>
-      // </Fragment>
+     </Fragment>
     );
   };
   

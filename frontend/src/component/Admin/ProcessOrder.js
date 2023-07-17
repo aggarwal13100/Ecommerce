@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import MetaData from "../layout/MetaData";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Typography } from '@mui/material';
 import SideBar from "./Sidebar";
 import {
@@ -19,7 +19,7 @@ import "./processOrder.css";
 const ProcessOrder = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);
-  const [searchParams] = useSearchParams();
+  const { id } = useParams();
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
@@ -28,14 +28,13 @@ const ProcessOrder = () => {
 
     myForm.set("status", status);
 
-    dispatch(updateOrder(searchParams.id, myForm));
+    dispatch(updateOrder(id, myForm));
   };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [status, setStatus] = useState("");
-  console.log(searchParams.id);
 
   useEffect(() => {
     if (error) {
@@ -51,9 +50,8 @@ const ProcessOrder = () => {
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
-    dispatch(getOrderDetails(searchParams.id));
-  }, [dispatch, navigate, error, searchParams.id, isUpdated, updateError]);
-
+    dispatch(getOrderDetails(id));
+  }, [dispatch, navigate, error, id, isUpdated, updateError]);
   return (
     <Fragment>
       <MetaData title="Process Order" />

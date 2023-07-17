@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 import Spinner from "../Spinner/Spinner";
 import { toast } from "react-toastify";
 
 const OrderDetails = () => {
-    const [searchParams] = useSearchParams();
-    const id = searchParams.get('id');
+    const { id } = useParams();
     const { order, error, loading } = useSelector(
         (state) => state.orderDetails
     );

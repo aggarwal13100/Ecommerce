@@ -6,7 +6,7 @@ import MetaData from "../layout/MetaData";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PersonIcon from '@mui/icons-material/Person';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SideBar from "./Sidebar";
 import { UPDATE_USER_RESET } from "../../constants/userConstants";
 import {
@@ -18,7 +18,7 @@ import Spinner from "../Spinner/Spinner";
 
 const UpdateUser = () => {
 
-  const [searchParams] = useSearchParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const UpdateUser = () => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-  const userId = searchParams.id;
+  const userId = id;
 
   useEffect(() => {
     if (user && user._id !== userId) {

@@ -38,8 +38,11 @@ exports.newOrder = catchAsyncError(async (req, res, next) => {
 
 exports.getSingleOrder = catchAsyncError(
     async (req , res ,next) => {
+        
         const orderId = req.params.id ;
+        console.log(orderId);
         const order = await Order.findById(orderId).populate("user" , "name email");
+        console.log(order);
         
   // order not found
   if (!order) {
@@ -101,13 +104,10 @@ exports.updateOrder = catchAsyncError(
 
         if (req.body.status === "Shipped") {
             order.orderItems.forEach(async (o) => {
-              await updateStock(o.product, o.quantity);
+              await updateStock(o.product_id, o.quantity);
             });
           }
 
-       order.orderItems.forEach(async i=>{
-        await updateStock(i.product,i.quantity);
-       });
 
        order.orderStatus = req.body.status;
 
