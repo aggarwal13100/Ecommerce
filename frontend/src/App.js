@@ -22,7 +22,9 @@ import OrderList from "./component/Admin/OrderList.js";
 import ProcessOrder from "./component/Admin/ProcessOrder.js";
 import UsersList from "./component/Admin/UsersList.js";
 import UpdateUser from "./component/Admin/UpdateUser.js";
-import ProductReviews from "./component/Admin/ProductReviews.js";
+import ProductReviews from "./component/Admin/ProductReviews.js"
+import Products from "./component/Product/Products.js";
+import Search from "./component/Product/Search.js";
 
 import Home from "./component/Home/Home.js";
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
@@ -49,6 +51,11 @@ function App() {
             </Route> */}
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product/:id" element={<ProductDetails />} />
+                <Route exact path="/products" component={Products} />
+                <Route  path="/products/:keyword" component={Products} />
+               
+                <Route exact path="/search" component={Search} />
+                
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/shipping" element={<Shipping />} />
                 <Route
