@@ -41,7 +41,7 @@ function App() {
 
     return (
         <>
-            <Footer />
+            
             <Header />
             <Routes>
                 {/* <Route element={<ProtectedRoute/>}>

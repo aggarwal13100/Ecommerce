@@ -28,7 +28,7 @@ const Shipping = () => {
     dispatch(
       saveShippingInfo(formData)
     );
-    navigate("/order/confirm");
+    navigate("/yourOrder/confirm");
   }
 
 
