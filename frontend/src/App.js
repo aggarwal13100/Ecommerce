@@ -14,8 +14,9 @@ import Footer from "./component/layout/Footer/Footer.js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails";
-
 import Home from "./component/Home/Home.js";
+// import ProtectedRoute from "./component/Route/ProtectedRoute";
+
 function App() {
     const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -34,9 +35,11 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Home/>} />
             <Route exact path="/product/:id" element={<ProductDetails />} />
+            {/* <Route element={<ProtectedRoute/>}>
+                <Route exact path="/cart" element={<Cart />} />
+            </Route> */}
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/shipping" element={<Shipping />} />
-            <Route exact path="/order/confirm" element={<ConfirmOrder />} />
             <Route exact path="/success" element={<OrderSuccess/>} />
             <Route exact path="/orders" element={<MyOrders/>} />
             <Route
@@ -49,6 +52,8 @@ function App() {
                 }
             />
             <Route exact path = "/login" element={<LoginSignUp/>} />
+            <Route exact path="/yourOrder/confirm" element={<ConfirmOrder />} />
+
             <Route exact path = "/order/:id" element={<OrderDetails/>} />
         </Routes>
         <Footer/>

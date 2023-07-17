@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link , useParams } from "react-router-dom";
 import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 import Spinner from "../Spinner/Spinner";
 import { toast } from "react-toastify";
 
 const OrderDetails = () => {
-    const [searchParams] = useSearchParams();
-    const id = searchParams.get("id");
+    const { id } = useParams();
     const { order, error, loading } = useSelector(
         (state) => state.orderDetails
     );
@@ -19,9 +18,9 @@ const OrderDetails = () => {
             toast.error(error);
             dispatch(clearErrors());
         }
-        dispatch(getOrderDetails());
-    }, [dispatch, error, id]);
-    console.log(order);
+        dispatch(getOrderDetails(id));
+    }, [dispatch,error, id]);
+    
     return (
         <div className="w-full min-h-[100vh] overflow-x-hidden">
             {loading ? (
@@ -112,13 +111,13 @@ const OrderDetails = () => {
                         <div>
                             {order?.orderItems?.[0] &&
                                 order.orderItems.map((item) => (
-                                    <div key={item.product} className="flex flex-wrap mt-4 justify-around items-center border rounded-xl hover:shadow-2xl">
+                                    <div key={item.product_id} className="flex flex-wrap mt-4 justify-around items-center border rounded-xl hover:shadow-2xl">
                                         <div  className=" flex gap-x-4 items-center">
                                             <div  className="pl-2 py-4">
                                                 <img
                                                     className=" h-[80px] aspect-auto object-cover rounded-lg shadow-xl"
                                                     key={item.product}
-                                                    src={item.image}
+                                                    src={item.image.url}
                                                     alt="Product"
                                                 />
                                             </div>

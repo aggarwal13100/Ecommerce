@@ -31,6 +31,7 @@ const ConfirmOrder = () => {
 
     navigate("/payment/process");
   };
+  
   return (
     <div>
       <CheckoutSteps activeStep={1} />

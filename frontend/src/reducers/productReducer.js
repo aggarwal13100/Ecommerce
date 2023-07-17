@@ -11,8 +11,7 @@ import {
     // for single product page
     PRODUCT_DETAILS_REQUESTS,
     PRODUCT_DETAILS_SUCCESS,
-    PRODUCT_DETAILS_FAIL,
-    CLEAR_ERRORS,
+    PRODUCT_DETAILS_FAIL
 } from "../constants/productConstants";
 
 // reducer for fetching details of single product page
