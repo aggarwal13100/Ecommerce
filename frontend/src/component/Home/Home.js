@@ -4,22 +4,22 @@ import "./Home.css";
 import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
 import { clearErrors, getProduct } from "../../actions/productAction";
+import {toast} from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader.js";
 /* import { useAlert } from "react-alert"; */
 
 const Home = () => {
-/*   const alert = useAlert(); */
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
-/*     if (error) {
-      alert.error(error);
+      if (error) {
+      toast(error);
       dispatch(clearErrors());
-    } */
+    } 
     dispatch(getProduct());
-  }, [dispatch, error, /* alert */]);
+  }, [dispatch, error, ]);
 
   return (
     <Fragment>
