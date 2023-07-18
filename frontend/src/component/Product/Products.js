@@ -9,7 +9,6 @@ import {toast} from "react-toastify";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
-import {toast} from  'react-toastify';
 const categories = [
   "Laptop",
   "Footwear",
