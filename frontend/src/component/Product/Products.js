@@ -6,6 +6,7 @@ import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import {toast} from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
@@ -19,8 +20,9 @@ const categories = [
   "SmartPhones",
 ];
 
-const Products = ({ match }) => {
+const Products = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
@@ -37,7 +39,7 @@ const Products = ({ match }) => {
     filteredProductsCount,
   } = useSelector((state) => state.products);
 
-  const keyword = match.params.keyword;
+  const keyword = id;
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
