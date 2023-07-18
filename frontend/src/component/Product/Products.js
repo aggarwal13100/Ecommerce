@@ -5,6 +5,7 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
+import {toast} from "react-toastify";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
@@ -50,12 +51,12 @@ const Products = ({ match }) => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast(error);
       dispatch(clearErrors());
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings, error]);
+  }, [dispatch, keyword, currentPage, price, category, ratings,error]);
 
   return (
     <Fragment>
@@ -65,7 +66,7 @@ const Products = ({ match }) => {
         <Fragment>
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           <h2 className="productsHeading">Products</h2>
-
+          
           <div className="products">
             {products &&
               products.map((product) => (
