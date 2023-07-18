@@ -3,7 +3,7 @@ import { CgMouse } from "react-icons/cg";
 import "./Home.css";
 import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
-import { clearErrors, getProduct } from "../../actions/productAction";
+import { getProduct } from "../../actions/productAction";
 import {toast} from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader.js";
@@ -15,11 +15,10 @@ const Home = () => {
 
   useEffect(() => {
       if (error) {
-      toast(error);
-      dispatch(clearErrors());
+      return toast(error);
     } 
     dispatch(getProduct());
-  }, [dispatch, error, ]);
+  }, [dispatch, error]);
 
   return (
     <Fragment>

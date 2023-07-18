@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getProduct } from "../../actions/productAction";
+import { getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
@@ -9,7 +9,7 @@ import {toast} from "react-toastify";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
-
+import {toast} from  'react-toastify';
 const categories = [
   "Laptop",
   "Footwear",
@@ -51,8 +51,7 @@ const Products = ({ match }) => {
 
   useEffect(() => {
     if (error) {
-      toast(error);
-      dispatch(clearErrors());
+     return toast(error);
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
