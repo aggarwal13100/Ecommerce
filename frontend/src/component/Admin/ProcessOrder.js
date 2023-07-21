@@ -78,14 +78,14 @@ const ProcessOrder = () => {
                     <div>
                       <p>Phone:</p>
                       <span>
-                        {order.shippingInfo && order.shippingInfo.phoneNo}
+                        {order.shippingInfo && order.shippingInfo.phoneno}
                       </span>
                     </div>
                     <div>
                       <p>Address:</p>
                       <span>
                         {order.shippingInfo &&
-                          `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
+                          `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pincode}, ${order.shippingInfo.country}`}
                       </span>
                     </div>
                   </div>
@@ -134,9 +134,9 @@ const ProcessOrder = () => {
                   <div className="confirmCartItemsContainer">
                     {order.orderItems &&
                       order.orderItems.map((item) => (
-                        <div key={item.product}>
-                          <img src={item.image} alt="Product" />
-                          <Link to={`/product/${item.product}`}>
+                        <div key={item.product_id}>
+                          <img src={item.image.url} alt="Product" />
+                          <Link to={`/product/${item.product_id}`}>
                             {item.name}
                           </Link>{" "}
                           <span>

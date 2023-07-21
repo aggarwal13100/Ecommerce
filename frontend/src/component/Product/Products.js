@@ -6,7 +6,7 @@ import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import {toast} from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
