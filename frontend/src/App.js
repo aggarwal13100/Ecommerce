@@ -28,31 +28,39 @@ import Search from "./component/Product/Search.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
-
+import  store  from "./store.js";
 import Home from "./component/Home/Home.js";
-// import ProtectedRoute from "./component/Route/ProtectedRoute";
-
+import { loadUser } from "./actions/userAction";
+import UserOptions from "./component/layout/Header/UserOptions.js";
+import { useSelector } from "react-redux";
+import Profile from "./component/User/Profile.js";
+import UpdateProfile from "./component/User/UpdateProfile.js";
+import ProtectedRoute from "./component/Route/ProtectedRoute";
 function App() {
+    const {isAuthenticated,user}=useSelector(state=>state.user);
     const [stripeApiKey, setStripeApiKey] = useState("");
-
-    async function getStripeApiKey() {
+/*     const isAdmin=useSelector(state=>state.user.user.role)==="admin";
+    */ async function getStripeApiKey() {
         const { data } = await axios.get("/api/v1/stripeapikey");
         setStripeApiKey(data.stripeApiKey);
     }
 
     useEffect(() => {
         getStripeApiKey();
+        store.dispatch(loadUser());
     }, []);
 
     return (
         <>
 
             <Header />
+          {isAuthenticated && <UserOptions user = {user}/>}
+     
             <Routes>
                 {/* <Route element={<ProtectedRoute/>}>
                 <Route exact path="/cart" element={<Cart />} />
             </Route> */}
-                <Route exact path="/" element={<Home/>} />
+  <Route exact path="/" element={<Home/>} />
                 <Route exact path="/product/:id" element={<ProductDetails />} />
                 <Route exact path="/products" element={<Products/>} />
                <Route path="/products/:id" element={<Products/>} />
@@ -60,12 +68,30 @@ function App() {
                 <Route exact path="/search" element={<Search />} />
 
                 <Route exact path="/cart" element={<Cart />} />
+               
+               
+               
+                <Route exact path="/account" element={
+                <ProtectedRoute  >
+                <Profile />
+                </ProtectedRoute>
+                } />
+               
+                           
+               <Route exact path="/me/update" element={
+                <ProtectedRoute  >
+                <UpdateProfile />
+                </ProtectedRoute>
+                } />   
+               
+               
                 <Route exact path="/shipping" element={<Shipping />} />
                 <Route
                     exact
                     path="/yourOrder/confirm"
                     element={<ConfirmOrder />}
                 />
+
                 <Route exact path="/success" element={<OrderSuccess />} />
                 <Route exact path="/orders" element={<MyOrders />} />
                 <Route exact path="/admin/products" element={<ProductList />} />
