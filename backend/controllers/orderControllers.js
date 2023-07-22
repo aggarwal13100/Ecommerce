@@ -119,7 +119,7 @@ exports.updateOrder = catchAsyncError(
 
         res.status(200).json({
             success : true ,
-        })
+        });
 
 });
 

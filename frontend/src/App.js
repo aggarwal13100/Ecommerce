@@ -25,6 +25,9 @@ import UpdateUser from "./component/Admin/UpdateUser.js";
 import ProductReviews from "./component/Admin/ProductReviews.js"
 import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js";
+import UpdatePassword from "./component/User/UpdatePassword.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
+import ResetPassword from "./component/User/ResetPassword.js";
 
 import Home from "./component/Home/Home.js";
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
@@ -74,6 +77,9 @@ function App() {
                 <Route exact path="/admin/users" element={<UsersList />} />
                 <Route exact path="/admin/user/:id" element={<UpdateUser />} />
                 <Route exact path="/admin/reviews" element={<ProductReviews />}/>
+                <Route exact path="/password/update" element={<UpdatePassword />}/>
+                <Route exact path="/password/forgot" element={<ForgotPassword />}/>
+                <Route exact path="/password/reset/:token" element={<ResetPassword />}/>
 
                 <Route
                     exact
