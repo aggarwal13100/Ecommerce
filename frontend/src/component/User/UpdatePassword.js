@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import "./UpdatePassword.css";
 import Spinner from "../Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { clearErrors, updatePassword } from "../../actions/userAction";
 import {toast} from 'react-toastify';
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";

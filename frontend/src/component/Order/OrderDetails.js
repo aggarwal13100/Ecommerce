@@ -123,8 +123,8 @@ const OrderDetails = () => {
                                                 />
                                             </div>
                                             <Link className="text-lg text-[#000000a4] hover:text-pine-green"
-                                                key={item.product}
-                                                to={`/product/${item.product}`}
+                                                key={item.product_id}
+                                                to={`/product/${item.product_id}`}
                                             >
                                                 {item.name}
                                             </Link>
