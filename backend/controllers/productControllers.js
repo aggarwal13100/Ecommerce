@@ -168,20 +168,20 @@ exports.createProductReview = catchAsyncError(
         if (isReviewed) {
             // updating the review
             let previousRating = 0;
-            product.reviews.forEach(review => {
-                if (review.user.toString() === user._id.toString()) {
-                    previousRating = review.rating;
-                    review.rating = rating;
-                    review.comment = comment;
+            product.reviews.forEach(rev => {
+                if (rev.user.toString() === user._id.toString()) {
+                    previousRating = Number(rev.rating);
+                    rev.rating = review.rating;
+                    rev.comment = comment;
                 }
             })
 
-            product.ratings = ((product.ratings * product.reviews.length) - previousRating + rating) / (product.reviews.length);
+            product.ratings = ((product.ratings * product.reviews.length) - previousRating + review.rating) / (product.reviews.length);
 
         }
         else {
             // add review to the product
-            product.ratings = ((product.ratings * product.reviews.length) + rating) / (product.reviews.length + 1);
+            product.ratings = ((product.ratings * product.reviews.length) + review.rating) / (product.reviews.length + 1);
             product.reviews.push(review);
             product.numOfReviews = product.reviews.length;
         }

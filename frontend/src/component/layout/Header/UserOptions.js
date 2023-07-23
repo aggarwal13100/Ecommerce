@@ -6,7 +6,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { logout } from "../../../actions/userAction";
 import {toast} from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -51,9 +51,9 @@ const UserOptions = ({user}) => {
       function account() {
         navigate("/account");
       }
-      function cart() {
-        navigate("/cart");
-      }
+      // function cart() {
+      //   navigate("/cart");
+      // }
       function logoutUser() {
         dispatch(logout()); 
         toast("Logout Successfully");

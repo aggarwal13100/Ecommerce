@@ -8,7 +8,6 @@ import Pagination from "react-js-pagination";
 import {toast} from "react-toastify";
 import {useParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
-import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
 const categories = [
   "Laptop",
@@ -65,7 +64,7 @@ const Products = () => {
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <div className="min-h-screen">
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           <h2 className="productsHeading">Products</h2>
           
@@ -76,9 +75,11 @@ const Products = () => {
               ))}
           </div>
 
-          <div className="filterBox">
-            <Typography>Price</Typography>
-           <Slider
+          <div className="filterBox flex flex-col gap-y-[1rem]">
+          <fieldset className="p-4 rounded-xl">
+
+            <div className="font-bold text-base text-pine-green">Price</div>
+           <Slider 
               value={price}
               onChange={priceHandler}
               valueLabelDisplay="auto"
@@ -86,9 +87,10 @@ const Products = () => {
               min={0}
               max={25000}
             />
+          </fieldset>
 
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
+            <div className="font-bold text-base text-pine-green">Categories</div>
+            <ul  className="categoryBox flex flex-col gap-y-2">
               {categories.map((category) => (
                 <li
                   className="category-link"
@@ -100,8 +102,8 @@ const Products = () => {
               ))}
             </ul>
 
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
+            <fieldset  className="p-4 rounded-xl">
+              <div className="font-bold text-base text-pine-green" component="legend">Ratings Above</div>
               <Slider
                 value={ratings}
                 onChange={(e, newRating) => {
@@ -132,7 +134,7 @@ const Products = () => {
               />
             </div>
           )}
-        </Fragment>
+        </div>
       )}
     </Fragment>
   );

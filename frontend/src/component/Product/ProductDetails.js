@@ -98,9 +98,7 @@ const ProductDetails = () => {
         <Spinner />
       ) : (
         <div>
-          {/* HEADER */}
-          <div className="text-3xl text-red-500 text-center">Header</div>
-          <div className="flex flex-col my-4 md:flex-row md:w-10/12 md:mx-auto md:items-start">
+          <div className="flex flex-col my-4 mt-[8rem] md:flex-row md:w-10/12 md:mx-auto md:items-start">
             {/* IMAGE SECTION */}
             <div className="w-10/12 mx-auto flex justify-center items-center md:sticky md:top-0 flex-col">
               {product?.images?.[currIndex] && (
@@ -185,7 +183,8 @@ const ProductDetails = () => {
               <h3 className="font-bold mt-2 text-lg w-full mx-auto whitespace-pre-line">
                 Product Description
               </h3>
-              <p className="text-sm my-1 w-full mx-auto text-[#000000bd] ">
+              <p className="text-sm my-1 w-full mx-auto text-[#000000bd]
+              tracking-wide whitespace-pre-line ">
                 {product.description}
               </p>
             </div>

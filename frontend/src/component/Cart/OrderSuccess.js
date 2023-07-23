@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 const OrderSuccess = () => {
   return (
-    <div className='w-screen h-screen overflow-y-hidden bg-[#ddd]'>
-        <div className='text-xl py-2 text-center'>HEADER</div>
+    <div className='w-screen min-h-screen pt-[8rem] overflow-y-hidden bg-[#ddd]'>
         <div className='w-[80vw] max-w-[600px] mx-auto h-[60vh] max-h-[600px] flex flex-col justify-evenly bg-baby-powder mt-8 rounded-lg shadow-xl p-4 items-center'>
             <div><BiSolidCheckCircle className='text-6xl text-midnight-green'/></div>
             <div className='flex flex-col items-center'>
@@ -18,7 +17,6 @@ const OrderSuccess = () => {
             View Orders
             </button></Link>
         </div>
-        <div className='absolute bottom-0 py-2 text-xl text-center w-full z-[100] '>FOOTER</div>
 
     </div>
     

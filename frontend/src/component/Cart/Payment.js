@@ -95,6 +95,7 @@ const Payment = () => {
                     };
                     
                     dispatch(createOrder(order));
+                    localStorage.removeItem("cartItems");
                     navigate("/success");
 
                 } else {
@@ -117,9 +118,8 @@ const Payment = () => {
     } , [dispatch , error ]);
 
     return (
-        <div className="bg-[#ddd] w-screen h-screen overflow-hidden">
-            <div className="text-xl text-center p-2">HEADER</div>
-            <div className="mt-8">
+        <div className="bg-[#ddd] w-screen min-h-screen overflow-hidden">
+            <div className="mt-[8rem]">
                 <CheckoutSteps activeStep={2} />
             </div>
 
@@ -148,7 +148,6 @@ const Payment = () => {
                     </div>
                 </form>
             </div>
-            <div>FOOTER</div>
         </div>
     );
 };

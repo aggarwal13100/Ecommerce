@@ -33,7 +33,7 @@ const ConfirmOrder = () => {
   };
   
   return (
-    <div>
+    <div className="mt-[8rem]">
       <CheckoutSteps activeStep={1} />
       <div className="w-11/12 mx-auto ">
         {/* ACTIONS */}

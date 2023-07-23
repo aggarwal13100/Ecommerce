@@ -34,11 +34,11 @@ const Shipping = () => {
 
   return (
     <>
-    <div className="text-xl text-center p-2">HEADER</div>
-    <div className="mt-8">
+    
+    <div className="mt-[8rem]">
       <CheckoutSteps activeStep = {0}/>
     </div>
-    <div className="w-11/12 h-[80vw] mx-auto max-w-[700px]">
+    <div className="w-11/12 mx-auto mb-[4rem] min-h-[80vh] max-w-[700px]">
     <h1 className="text-center font-semibold text-2xl underline underline-offset-[1rem] m-6">Shipping Details</h1>
       <form className="w-full flex flex-col  px-[1rem] pb-4" onSubmit={submitHandler}>
 

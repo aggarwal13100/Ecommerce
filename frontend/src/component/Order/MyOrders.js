@@ -16,6 +16,7 @@ const MyOrders = () => {
     });
 
     const { user } = useSelector((state) => state.user);
+    console.log(user);
 
     const columns = [
         { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
@@ -85,7 +86,7 @@ const MyOrders = () => {
     }, [dispatch, error]);
 
     return (
-        <div>
+        <div >
             {/* <MetaData title={`${user.name} - Orders`} /> */}
 
             {loading ? (

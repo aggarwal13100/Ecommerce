@@ -20,12 +20,11 @@ const Cart = () => {
 
     return (
         <div>
-            <div className="text-3xl text-center p-2 text-teal-800">HEADER</div>
-            <div className="w-11/12 mx-auto ">
+            <div className="w-11/12 mt-[8rem] mx-auto ">
                 {cartItems?.[0] ? (
                     <div>
                         {/* HEADER */}
-                        <h2 className="text-xl font-bold text-center p-1">
+                        <h2 className="text-3xl font-bold text-center p-1">
                             YOUR CART
                         </h2>
                         {/* ACTIONS */}
@@ -84,7 +83,7 @@ const Cart = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className="w-full absolute top-[50vh] left-[50vw] -translate-x-[50%] -translate-y-[50%] flex justify-center items-center text-2xl flex-col gap-y-4">
+                    <div className=" flex justify-center h-[80vh] items-center text-2xl flex-col gap-y-4">
                         <MdRemoveShoppingCart className="text-midnight-green scale-150" />
                         <div>YOUR CART IS EMPTY</div>
                         <Link to="/products">
