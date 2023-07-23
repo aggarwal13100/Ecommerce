@@ -116,7 +116,7 @@ const UpdateProfile = () => {
                 <input
                   type="submit"
                   value="Update"
-                  className="updateProfileBtn"
+                  className="updateProfileBtn bg-[#01796F]"
                 />
               </form>
             </div>
