@@ -9,3 +9,20 @@
     height: 56px;
     border-radius: 100%;
   }
+
+  .menuBurger{
+    padding: 0px;
+}
+.menuBurgerItem1 {
+    transform: rotateZ(45deg);
+    top : 1vmax;
+    position: absolute;
+  }
+  .menuBurgerItem2 {
+    transform: translateX(-200%);
+  }
+  .menuBurgerItem3 {
+    transform: rotateZ(-45deg);
+    top: 1vmax;
+    position: absolute;
+  }

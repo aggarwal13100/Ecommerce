@@ -34,7 +34,7 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [open , setOpen] = useState(false) ;
-  const [rating , setRating] = useState(0) ;
+  const [rating , setRating] = useState(0.0) ;
   const [comment  , setComment ] = useState("");
 
   const submitReviewToggle = () => {
