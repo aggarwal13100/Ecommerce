@@ -39,8 +39,7 @@ import ProtectedRoute from "./component/Route/ProtectedRoute";
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
     const [stripeApiKey, setStripeApiKey] = useState("");
-    /*     const isAdmin=useSelector(state=>state.user.user.role)==="admin";
-     */ async function getStripeApiKey() {
+      async function getStripeApiKey() {
         const { data } = await axios.get("/api/v1/stripeapikey");
         setStripeApiKey(data.stripeApiKey);
     }
