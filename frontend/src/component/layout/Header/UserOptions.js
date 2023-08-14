@@ -55,8 +55,11 @@ const UserOptions = ({user}) => {
       //   navigate("/cart");
       // }
       function logoutUser() {
+        if( localStorage.getItem("cartItems")) (localStorage.removeItem("cartItems")) ;
+        if(localStorage.getItem("shippingInfo")) (localStorage.removeItem("shippingInfo")) ;
         dispatch(logout()); 
         toast("Logout Successfully");
+        navigate("/");
       }
     
     
